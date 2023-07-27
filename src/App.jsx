@@ -76,17 +76,17 @@ function App() {
 
         // push guessed letter or remove a chance
         if (letters.includes(normalizedLetter)) {
-            setGuessedLetters((actualGuessedLetters) => [
-                ...actualGuessedLetters,
-                letter,
+            setGuessedLetters((prevGuessedLetters) => [
+                ...prevGuessedLetters,
+                normalizedLetter,
             ]);
         } else {
-            setWrongLetters((actualWrongLetters) => [
-                ...actualWrongLetters,
+            setWrongLetters((prevWrongLetters) => [
+                ...prevWrongLetters,
                 normalizedLetter,
             ]);
 
-            setGuesses((actualGuesses) => actualGuesses - 1);
+            setGuesses((prevGuesses) => prevGuesses - 1);
         }
     };
 
@@ -120,7 +120,7 @@ function App() {
         // win condition
         if (guessedLetters.length === uniqueLetters.length) {
             // add score
-            setScore((actualScore) => (actualScore += 100));
+            setScore((prevScore) => (prevScore += 100));
 
             // restart game with new word
             startGame();
